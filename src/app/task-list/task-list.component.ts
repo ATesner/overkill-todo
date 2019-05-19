@@ -16,6 +16,9 @@ export class TaskListComponent implements OnInit {
 
   tasks$: Observable<any[]>;
 
+  title: string = '';
+  description: string = '';
+
   constructor(private appService: AppService,
     private store: Store<fromTask.State>,
     private router: Router) {
@@ -45,5 +48,21 @@ export class TaskListComponent implements OnInit {
 
   detailTodoClick(id) {
     this.router.navigate(['/task/', id]);
+  }
+
+  addTodoClick(){
+    if(this.title.length > 0){
+      this.createTask({ title: this.title, description: this.description, done: false});
+    }
+  }
+
+  createTask(obj) {
+    
+    this.appService.addTodo(obj).subscribe((data: fromTask.Task) => {
+      //console.log('addTodo', data) 
+      this.store.dispatch( new actions.createTask(data))
+      this.title = '';
+      this.description = '';
+    })
   }
 }

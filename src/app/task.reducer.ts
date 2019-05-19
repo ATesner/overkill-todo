@@ -29,6 +29,9 @@ export function taskReducer(state: State = initialState, action: actions.TaskAct
         case actions.INIT:
             return taskAdapter.addAll(action.tasks, state)
 
+        case actions.CREATE:
+            return taskAdapter.addOne(action.task, state);
+
         default:
             return state;
         
