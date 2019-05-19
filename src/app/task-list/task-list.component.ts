@@ -65,4 +65,11 @@ export class TaskListComponent implements OnInit {
       this.description = '';
     })
   }
+
+  deleteTodoClick(id) {
+    this.appService.deleteTodo(id).subscribe(task => {
+      // console.log('deleteTodo', task)
+      this.getAllTasks();
+    })
+  }
 }

@@ -19,6 +19,7 @@
         <p [ngClass]="task.done ? 'todo-done': ''">{{ task.title }}</p>
       </mat-checkbox>
       <button mat-flat-button (click)="detailTodoClick(task.id)">Details</button>
+      <button mat-flat-button color="warn" (click)="deleteTodoClick(task.id)">Delete</button>
     </mat-list-item>
   </ng-container>
 
@@ -30,6 +31,7 @@
         <p [ngClass]="task.done ? 'todo-done': ''">{{ task.title }}</p>
       </mat-checkbox>
       <button mat-flat-button (click)="detailTodoClick(task.id)">Details</button>
+      <button mat-flat-button color="warn" (click)="deleteTodoClick(task.id)">Delete</button>
     </mat-list-item>
   </ng-container>
 </mat-list>
