@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppService } from '../app.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -16,7 +17,8 @@ export class TaskListComponent implements OnInit {
   tasks$: Observable<any[]>;
 
   constructor(private appService: AppService,
-    private store: Store<fromTask.State>) {
+    private store: Store<fromTask.State>,
+    private router: Router) {
       this.tasks$ = this.store.select(fromTask.selectAll);
   }
 
@@ -39,5 +41,9 @@ export class TaskListComponent implements OnInit {
         // console.log('updateTodo', data)
         this.getAllTasks();
     })
+  }
+
+  detailTodoClick(id) {
+    this.router.navigate(['/task/', id]);
   }
 }

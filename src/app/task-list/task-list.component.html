@@ -6,6 +6,7 @@
       <mat-checkbox (click)="taskDoneClick($event, task)" [checked]="task.done">
         <p [ngClass]="task.done ? 'todo-done': ''">{{ task.title }}</p>
       </mat-checkbox>
+      <button mat-flat-button (click)="detailTodoClick(task.id)">Details</button>
     </mat-list-item>
   </ng-container>
 
@@ -16,6 +17,7 @@
       <mat-checkbox (click)="taskDoneClick($event, task)" [checked]="task.done">
         <p [ngClass]="task.done ? 'todo-done': ''">{{ task.title }}</p>
       </mat-checkbox>
+      <button mat-flat-button (click)="detailTodoClick(task.id)">Details</button>
     </mat-list-item>
   </ng-container>
 </mat-list>

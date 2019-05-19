@@ -1,1 +1,9 @@
-<p>Task detail</p>
+<button mat-flat-button routerLink="/">Back to list</button>
+<mat-card *ngIf="task">
+  <mat-card-title>
+    {{ task.title}}
+  </mat-card-title>
+  <mat-card-content>
+    {{ task.description }}
+  </mat-card-content>
+</mat-card>
