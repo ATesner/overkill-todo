@@ -3,7 +3,7 @@
 <mat-list role="list">
   <ng-container role="listitem" *ngFor="let task of tasks$ | async">
   <mat-list-item *ngIf="!task.done" >
-      <mat-checkbox [checked]="task.done">
+      <mat-checkbox (click)="taskDoneClick($event, task)" [checked]="task.done">
         <p [ngClass]="task.done ? 'todo-done': ''">{{ task.title }}</p>
       </mat-checkbox>
     </mat-list-item>
@@ -13,7 +13,7 @@
   
   <ng-container  role="listitem" *ngFor="let task of tasks$ | async" >
   <mat-list-item *ngIf="task.done">
-      <mat-checkbox [checked]="task.done">
+      <mat-checkbox (click)="taskDoneClick($event, task)" [checked]="task.done">
         <p [ngClass]="task.done ? 'todo-done': ''">{{ task.title }}</p>
       </mat-checkbox>
     </mat-list-item>

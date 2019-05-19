@@ -13,4 +13,8 @@ export class AppService {
     getAllTodos() {
         return this.httpClient.get(this.base_url + this.tasks_endpoint)
     } 
+
+    updateTodo(update) {
+        return this.httpClient.put(this.base_url + this.tasks_endpoint, update)
+    }
 } 

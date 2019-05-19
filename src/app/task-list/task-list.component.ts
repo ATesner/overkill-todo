@@ -30,4 +30,14 @@ export class TaskListComponent implements OnInit {
       this.store.dispatch(new actions.initTask(data))
     })
   }
+
+  taskDoneClick(event, task){
+    event.preventDefault();
+
+    task.done = !task.done;
+    this.appService.updateTodo(task).subscribe(data =>{
+        // console.log('updateTodo', data)
+        this.getAllTasks();
+    })
+  }
 }
