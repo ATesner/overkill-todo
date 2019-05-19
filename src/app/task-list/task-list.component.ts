@@ -18,6 +18,7 @@ export class TaskListComponent implements OnInit {
 
   title: string = '';
   description: string = '';
+  error: string = '';
 
   constructor(private appService: AppService,
     private store: Store<fromTask.State>,
@@ -51,8 +52,10 @@ export class TaskListComponent implements OnInit {
   }
 
   addTodoClick(){
-    if(this.title.length > 0){
+    if(this.title.trim().length > 0){
       this.createTask({ title: this.title, description: this.description, done: false});
+    }else{
+      this.error = "Title can't be empty";
     }
   }
 
@@ -63,6 +66,7 @@ export class TaskListComponent implements OnInit {
       this.store.dispatch( new actions.createTask(data))
       this.title = '';
       this.description = '';
+      this.error = '';
     })
   }
 

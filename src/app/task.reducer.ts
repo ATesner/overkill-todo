@@ -10,7 +10,7 @@ export interface Task {
 }
 
 export const taskAdapter = createEntityAdapter<Task>({
-    sortComparer: (a: Task, b: Task) => b.id.toString().localeCompare(a.id.toString()),
+    sortComparer: (a: Task, b: Task) => (a.id < b.id ? 1 : -1),
 });
   
 export interface State extends EntityState<Task> {}
