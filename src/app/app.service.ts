@@ -21,4 +21,8 @@ export class AppService {
     addTodo(obj) {
         return this.httpClient.post(this.base_url + this.tasks_endpoint, obj)
     }
+
+    deleteTodo(id) {
+        return this.httpClient.delete(`${this.base_url + this.tasks_endpoint}/${id}`)
+    }
 } 
