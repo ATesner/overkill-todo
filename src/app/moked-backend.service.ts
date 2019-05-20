@@ -2,6 +2,7 @@ import {InMemoryDbService} from 'angular-in-memory-web-api'
 
 export class MockedBackendService implements InMemoryDbService {
 
+    //simulate database for fake backend
     createDb() {
         let todos = [
             {

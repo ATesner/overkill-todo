@@ -30,6 +30,7 @@ export class TaskListComponent implements OnInit {
     this.getAllTasks();
   }
 
+  //retrieve all tasks from mock backend
   getAllTasks() {
     this.appService.getAllTodos().subscribe((data: fromTask.Task[]) => {
       // console.log('getAllTodos', data)
@@ -37,20 +38,23 @@ export class TaskListComponent implements OnInit {
     })
   }
 
+  //when I click on a task
   taskDoneClick(event, task){
     event.preventDefault();
 
-    task.done = !task.done;
+    task.done = !task.done; //update done
     this.appService.updateTodo(task).subscribe(data =>{
         // console.log('updateTodo', data)
-        this.getAllTasks();
+        this.getAllTasks(); //refresh after update
     })
   }
 
+  //on click on "Details"
   detailTodoClick(id) {
-    this.router.navigate(['/task/', id]);
+    this.router.navigate(['/task/', id]); //navigate to details page
   }
 
+  //on click "Add Todo"
   addTodoClick(){
     if(this.title.trim().length > 0){
       this.createTask({ title: this.title, description: this.description, done: false});
@@ -59,21 +63,23 @@ export class TaskListComponent implements OnInit {
     }
   }
 
+  //create a todo and clean form
   createTask(obj) {
     
     this.appService.addTodo(obj).subscribe((data: fromTask.Task) => {
       //console.log('addTodo', data) 
-      this.store.dispatch( new actions.createTask(data))
+      this.store.dispatch( new actions.createTask(data)); //add the task to the store
       this.title = '';
       this.description = '';
       this.error = '';
     })
   }
 
+  //on click delete
   deleteTodoClick(id) {
     this.appService.deleteTodo(id).subscribe(task => {
       // console.log('deleteTodo', task)
-      this.getAllTasks();
+      this.getAllTasks(); //refresh after delete
     })
   }
 }

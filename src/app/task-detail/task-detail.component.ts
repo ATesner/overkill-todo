@@ -17,6 +17,7 @@ export class TaskDetailComponent implements OnInit {
     
     let id = this.route.snapshot.paramMap.get('id');
 
+    //select the task from the store with id 
     this.store.select(fromTask.selectAll).subscribe(tasks => {
       this.task = tasks.find(task => task.id.toString() == id)
     }); 

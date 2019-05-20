@@ -29,9 +29,7 @@ import {
 
 const appRoutes: Routes = [
   { path: '', component: TaskListComponent },
-  { path: 'task/:id', component: TaskDetailComponent },
- 
-  // { path: '**', component: PageNotFoundComponent }
+  { path: 'task/:id', component: TaskDetailComponent }
 ];
 
 
@@ -46,7 +44,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot(appRoutes),
-    InMemoryWebApiModule.forRoot(MockedBackendService),
+    InMemoryWebApiModule.forRoot(MockedBackendService), //intercept httpClient request
     StoreModule.forRoot(reducers),  
     StoreModule.forFeature('task', taskReducer),
     BrowserAnimationsModule,

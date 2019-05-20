@@ -2,6 +2,7 @@ import { createFeatureSelector } from '@ngrx/store';
 import { EntityState, createEntityAdapter } from '@ngrx/entity'
 import * as actions from './task.action';
 
+//structure of task
 export interface Task {
     id: number,
     title: string,
@@ -9,10 +10,12 @@ export interface Task {
     done: boolean
 }
 
+//create an adapter with a sort method by id
 export const taskAdapter = createEntityAdapter<Task>({
     sortComparer: (a: Task, b: Task) => (a.id < b.id ? 1 : -1),
 });
   
+// create an EntityState of task
 export interface State extends EntityState<Task> {}
 
 const defaultTask = {
@@ -26,10 +29,10 @@ export function taskReducer(state: State = initialState, action: actions.TaskAct
 
     switch(action.type) {
 
-        case actions.INIT:
+        case actions.INIT: //action to replace all the current tasks or to init
             return taskAdapter.addAll(action.tasks, state)
 
-        case actions.CREATE:
+        case actions.CREATE: // action to add one task to the state
             return taskAdapter.addOne(action.task, state);
 
         default:
@@ -38,6 +41,7 @@ export function taskReducer(state: State = initialState, action: actions.TaskAct
     }
 }
 
+//create a selector for task
 export const getTaskState = createFeatureSelector<State>('task');
 
 export const {
